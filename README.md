@@ -1,4 +1,4 @@
-# Globant Fit Excercise (In Kotlin)
+# Globant Fit Excercise (In Kotlin) <img src="https://cdn.jsdelivr.net/npm/programming-languages-logos/src/kotlin/kotlin.png" height="30">
 
 The excercise was to develop an application that give us available flights for a given search query. With an inventory of the following flights:
 
