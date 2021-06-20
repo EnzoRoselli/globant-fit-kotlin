@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%20.20t] %highlight{%-40.40logger}:%L - %m%n"
+                    disableAnsi="false"/>
+        </Console>
+        <RollingFile
+                name="rollingFile"
+                fileName="./fitFlightApplication.log"
+                filePattern="./fitFlightApplication.%d{dd-MMM}.log.gz"
+                ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%20.20t] %highlight{%-40.40logger}:%L - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="com.expedia.flightskotlin" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
+
