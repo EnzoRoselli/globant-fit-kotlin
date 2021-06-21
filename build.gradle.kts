@@ -37,6 +37,8 @@ dependencies {
     runtimeOnly("mysql:mysql-connector-java")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.mockk:mockk:1.11.0")
+    testImplementation("io.kotest:kotest-assertions-core:4.6.0")
 }
 
 tasks.withType<KotlinCompile> {

@@ -30,11 +30,12 @@ The excercise was to develop an application that give us available flights for a
 
 - Kotlin 1.5.10 (Compatibility with Java 16)
 - Spring Boot 2.5.1
-- Gradle
-- JUnit 5
+- Gradle 7.0.2
 - MySQL8
-- Mockito
 - Swagger
+- JUnit 5
+- MockK
+- Kotest (Only the Assertions Library)
 
 ## How to Use :pencil:
 

@@ -8,4 +8,4 @@ data class FlightDTO(val flight: String?, val departure: String?){
         ?.replace("a. m.", "AM")?.replace("p. m.", "PM"))
 }
 
-data class FlightListDTO(val flights:List<FlightDTO>?)
+data class FlightListDTO(val flights:List<FlightDTO>)
