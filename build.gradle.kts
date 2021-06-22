@@ -36,6 +36,7 @@ dependencies {
     implementation("io.springfox:springfox-swagger-ui:2.9.2")
     runtimeOnly("mysql:mysql-connector-java")
     annotationProcessor("org.projectlombok:lombok")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.mockk:mockk:1.11.0")
     testImplementation("io.kotest:kotest-assertions-core:4.6.0")

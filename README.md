@@ -44,7 +44,7 @@ The excercise was to develop an application that give us available flights for a
 - Configure the Environment Variables in your IDE and then run the application.
 - Open a browser a type localhost:8080/flights/?departure=hh:mma where *hh* is the hour, *mm* minutes, and *a* AM/PM. E.g. /flights/?departure=07:30AM
 - Use Swagger to access all the endpoints : http://localhost:8080/swagger-ui.html
-- Also, you can see the swagger online here: https://app.swaggerhub.com/apis/EnzoRoselli/globant-fit-kotlin/1.0.0 
+- Also, you can see the swagger online here: https://app.swaggerhub.com/apis/EnzoRoselli/globant-fit-kotlin/1.0.1-oas3
 - You should see some flights 5 hours before & after the time you wrote.
 - At the root of the project a file named fitFlightApplication.log will be created which serves as the log for the application.
 

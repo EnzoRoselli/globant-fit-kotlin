@@ -1,16 +1,19 @@
-package com.expedia.fitflights.services
+package com.expedia.flightskotlin.services
 
 import com.expedia.flightskotlin.models.entities.Flight
 import com.expedia.flightskotlin.models.entities.Flight.Companion.toFlightDTOs
 import com.expedia.flightskotlin.repositories.FlightRepository
-import com.expedia.flightskotlin.services.FlightService
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 import java.time.LocalTime
+import java.util.stream.Stream
 
 class FlightServiceTest {
 
@@ -21,22 +24,31 @@ class FlightServiceTest {
             Flight(3L, "WestJet 6456", LocalTime.of(12, 30)),
             Flight(4L, "Delta 3833", LocalTime.of(15, 0)))
 
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     inner class GetFlights{
 
-        @Test
-        fun `check if get flights passing departure time works`(){
+        @ParameterizedTest
+        @MethodSource("validDepartureTimeProvider")
+        fun `check if get flights passing departure time works`(data: TestData){
             //given
-            val expectedFlights = listOf(flights[0], flights[1])
+            val expectedFlights = data.flights
             every { flightRepository.findByDepartureHourAndDepartureMinute(any(), any()) } returns expectedFlights
 
             //when
-            val flightListDTO = flightService.getFlights(LocalTime.of(6, 30))
+            val flightListDTO = flightService.getFlights(data.localTime)
 
             //then
             verify { flightRepository.findByDepartureHourAndDepartureMinute(any(), any()) }
             flightListDTO.flights shouldBe toFlightDTOs(expectedFlights)
         }
+
+        private fun validDepartureTimeProvider() = Stream.of(
+            TestData(LocalTime.of(6,30), listOf(flights[0], flights[1])),
+            TestData(LocalTime.of(22,30), listOf()),
+            TestData(LocalTime.of(2,30), listOf(flights[1], flights[2], flights[3]))
+        )
+
 
         @Test
         fun `check if get flights without departure time works`(){
@@ -51,4 +63,6 @@ class FlightServiceTest {
             flightListDTO.flights shouldBe toFlightDTOs(flights)
         }
     }
+
+    data class TestData(val localTime: LocalTime?, val flights: List<Flight>)
 }
