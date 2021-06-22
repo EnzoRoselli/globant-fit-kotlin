@@ -24,5 +24,5 @@ class FlightController(private val flightService : FlightService) {
         notes = "Provide a departure time with format 'hh:mma' to look up for flights in a range of 5 hours of the indicated time")
     @ApiResponses(value = [ApiResponse(code = 200, message = "Ok"), ApiResponse(code = 400, message = "Bad Request", response = ErrorMessage::class)])
     fun getFlights(@RequestParam @DateTimeFormat(pattern = "hh:mma") @ApiParam(required = false, example = "07:30AM") departure : LocalTime?)
-        : FlightListDTO = flightService.getFlights(departure)
+        = flightService.getFlights(departure)
 }

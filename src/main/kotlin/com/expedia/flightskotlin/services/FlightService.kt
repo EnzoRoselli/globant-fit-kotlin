@@ -9,6 +9,6 @@ import java.time.LocalTime
 @Service
 class FlightService(private val flightRepository : FlightRepository) {
 
-    fun getFlights(departure: LocalTime?): FlightListDTO = FlightListDTO(toFlightDTOs(
+    fun getFlights(departure: LocalTime?) = FlightListDTO(toFlightDTOs(
         departure?.let { flightRepository.findByDepartureHourAndDepartureMinute(it.hour, it.minute) } ?: flightRepository.findAll()))
 }
